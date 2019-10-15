@@ -30,5 +30,20 @@ namespace LightQueryTest.Controllers
                 });
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("withoutLQ")]
+        public IActionResult GetWithtoutLightQuery()
+        {
+            var result = _context.TableTest
+                .OrderBy(c => c.Date)
+                .Select(c => new MyChildrenData()
+                {
+                    Label = c.Label,
+                    Date = c.Date
+
+                });
+            return Ok(result);
+        }
     }
 }
